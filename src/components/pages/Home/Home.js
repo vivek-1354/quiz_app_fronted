@@ -3,7 +3,7 @@ import axios from "axios"
 
 // import Navbar from "../../Navbar/Navbar"
 // import QuizCard from "../../QuizCard/QuizCard"
-import { Navbar, QuizCard, AuthLogin } from "../../../components/index"
+import { Navbar, QuizCard } from "../../../components/index"
 
 
 export const Home = () => {

@@ -4,7 +4,7 @@ export const Navbar = () => {
     return (
         <header className="heading d-flex grow-shrink-basis align-center">
             <div className="heading-title-icon d-flex grow-shrink-basis align-center">
-                <img className="icon mr-1" src="/assets/image.png" alt="lightbul" />
+                <img className="icon mr-1" src="https://th.bing.com/th/id/OIP.Wan3qwy0HAIeMTuSz3hIkwAAAA?pid=ImgDet&w=182&h=182&c=7&dpr=1.3" alt="lightbul" />
                 <h1 className="heading-title">
                     <Link className="link" to="/">Quiziffy</Link>
                 </h1>
