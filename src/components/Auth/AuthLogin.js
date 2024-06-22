@@ -2,6 +2,8 @@ import './Auth.css'
 
 import { useAuth } from '../../context/index'
 import { useRef } from 'react'
+import { loginHandler } from '../../services/auth-service'
+import { useNavigate } from 'react-router-dom'
 
 
 export const AuthLogin = () => {
@@ -9,22 +11,38 @@ export const AuthLogin = () => {
     const user = useRef("")
     const pass = useRef("")
 
-    const { username, password, authDispatch } = useAuth()
+    const navigate = useNavigate()
+
+    const { username, password, token, authDispatch } = useAuth()
 
     const handleLogin = (e) => {
         e.preventDefault()
+        const token = loginHandler(user.current.value, pass.current.value)
+        // if (token) {
+        //     navigate('/')
+        // }
+        // authDispatch(
+        //     {
+        //         type: "CLEAR_CREDENTIALS",
+        //         payload: {
+        //             username: "",
+        //             password: ""
+        //         }
+        //     }
+        // )
         authDispatch(
             {
                 type: "LOGIN",
                 payload: {
                     username: user.current.value,
-                    password: pass.current.value
+                    password: pass.current.value,
+                    token: token
                 }
             }
         )
     }
 
-    console.log(username, password)
+    console.log(username, password, token)
     return (
         <div className="d-grid d-flex justify-center">
             <div className="login-auth d-flex direction-column justify-center">
@@ -42,6 +60,12 @@ export const AuthLogin = () => {
                         <button className="button login-btn btn-margin cursor sign-up-btn" onClick={handleLogin}>Login</button>
                     </div>
                 </form>
+                <div className="">
+                    <button className="button login-btn btn-outline-primary btn-margin cursor sign-up-btn" onClick={handleLogin}>
+                        Login with Test Credentials
+                    </button>
+                </div>
+
 
             </div>
         </div>
