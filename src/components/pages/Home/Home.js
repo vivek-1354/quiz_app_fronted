@@ -25,7 +25,7 @@ export const Home = () => {
             {/* <AuthLogin /> */}
             <div className="main d-flex wrap-md align-center justify-start">
                 {
-                    categories.map(quiz => <QuizCard quiz={quiz} key={quiz.id} />)
+                    categories.map(quiz => <QuizCard quizCategory={quiz} key={quiz.id} />)
                 }
             </div>
         </>

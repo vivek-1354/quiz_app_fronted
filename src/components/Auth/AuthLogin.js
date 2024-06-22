@@ -13,7 +13,7 @@ export const AuthLogin = () => {
 
     const navigate = useNavigate()
 
-    const { username, password, token, authDispatch } = useAuth()
+    const { authDispatch } = useAuth()
 
     const handleLogin = (e) => {
         e.preventDefault()
@@ -41,8 +41,6 @@ export const AuthLogin = () => {
             }
         )
     }
-
-    console.log(username, password, token)
     return (
         <div className="d-grid d-flex justify-center">
             <div className="login-auth d-flex direction-column justify-center">
