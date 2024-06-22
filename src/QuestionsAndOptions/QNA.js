@@ -2,7 +2,7 @@ import './QNA.css'
 
 import React from 'react'
 
-export const QNA = ({ category, title, question, options }) => {
+export const QNA = ({ category, question, options }) => {
     return (
         <main className="d-flex justify-center qns-main">
             <section className="question-dialog container-flex">
