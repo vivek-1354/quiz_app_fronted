@@ -18,3 +18,8 @@ export const loginHandler = async (username, password) => {
         console.log(error)
     }
 }
+
+
+export const logoutHandler = () => {
+    localStorage.clear()
+}

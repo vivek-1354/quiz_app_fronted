@@ -1,6 +1,19 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { logoutHandler } from '../../services/auth-service'
 
 export const Navbar = () => {
+
+    const navigate = useNavigate()
+    // const { token } = useAuth()
+
+    const token = localStorage.getItem('token')
+
+    const handleOnClick = () => {
+        if (token) {
+            logoutHandler()
+            navigate('/auth/login')
+        }
+    }
     return (
         <header className="heading d-flex grow-shrink-basis align-center">
             <div className="heading-title-icon d-flex grow-shrink-basis align-center">
@@ -18,7 +31,7 @@ export const Navbar = () => {
                         <Link to="/auth/signup" className="link cursor">signUp</Link>
                     </li>
                     <li className="list-item-inline">
-                        <Link to="/auth/login" className="link cursor">Login</Link>
+                        <Link to="/auth/login" className="link cursor" onClick={handleOnClick}>{token ? "Logout" : "Login"}</Link>
                     </li>
                 </ul>
             </nav>

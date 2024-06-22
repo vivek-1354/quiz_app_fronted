@@ -1,8 +1,23 @@
 import './QuizCard.css'
 
-export const QuizCard = ({ quiz }) => {
 
+import { useAuth } from '../../context'
+import { useNavigate } from 'react-router-dom'
+
+export const QuizCard = ({ quiz }) => {
+    const navigate = useNavigate()
+
+    const { token } = useAuth()
     const { title, description } = quiz
+
+    const handlePlayNow = () => {
+        if (token) {
+            navigate('/quiz')
+        } else {
+            navigate('/auth/login')
+        }
+    }
+
     return (
         <div className="container d-flex direction-column">
             <div className="img-box">
@@ -12,7 +27,7 @@ export const QuizCard = ({ quiz }) => {
                 <h3 className="title">{title}</h3>
                 <span>{description}</span>
             </div>
-            <button className="button play-now-btn btn-primary cursor">Play Now</button>
+            <button className="button play-now-btn btn-primary cursor" onClick={handlePlayNow}>Play Now</button>
         </div>
 
     )

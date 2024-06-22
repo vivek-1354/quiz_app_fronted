@@ -18,9 +18,9 @@ export const AuthLogin = () => {
     const handleLogin = (e) => {
         e.preventDefault()
         const token = loginHandler(user.current.value, pass.current.value)
-        // if (token) {
-        //     navigate('/')
-        // }
+        if (token) {
+            navigate('/')
+        }
         // authDispatch(
         //     {
         //         type: "CLEAR_CREDENTIALS",
