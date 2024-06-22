@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
 
-import Navbar from "../../Navbar/Navbar"
-import QuizCard from "../../QuizCard/QuizCard"
+// import Navbar from "../../Navbar/Navbar"
+// import QuizCard from "../../QuizCard/QuizCard"
+import { Navbar, QuizCard, AuthLogin } from "../../../components/index"
 
 
-const Home = () => {
+export const Home = () => {
     const [categories, setCategories] = useState([])
     useEffect(() => {
         (async () => {
@@ -21,6 +22,7 @@ const Home = () => {
     return (
         <>
             <Navbar />
+            {/* <AuthLogin /> */}
             <div className="main d-flex wrap-md align-center justify-start">
                 {
                     categories.map(quiz => <QuizCard quiz={quiz} key={quiz.id} />)
@@ -30,4 +32,3 @@ const Home = () => {
     )
 }
 
-export default Home

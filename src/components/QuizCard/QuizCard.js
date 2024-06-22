@@ -1,13 +1,6 @@
 import './QuizCard.css'
 
-const QuizCard = ({ quiz }) => {
-
-    const handleOnClick = (quiz) => {
-        quiz.quiz.forEach(q => {
-            console.log(q.question)
-            q.options.forEach(op => console.log(op.option))
-        })
-    }
+export const QuizCard = ({ quiz }) => {
 
     const { title, description } = quiz
     return (
@@ -19,11 +12,10 @@ const QuizCard = ({ quiz }) => {
                 <h3 className="title">{title}</h3>
                 <span>{description}</span>
             </div>
-            <button className="button play-now-btn btn-primary cursor" onClick={() => handleOnClick(quiz)}>Play Now</button>
+            <button className="button play-now-btn btn-primary cursor">Play Now</button>
         </div>
 
     )
 }
 
 
-export default QuizCard
