@@ -6,12 +6,12 @@ import QuizCard from "../../QuizCard/QuizCard"
 
 
 const Home = () => {
-    const [quizes, setQuizes] = useState([])
+    const [categories, setCategories] = useState([])
     useEffect(() => {
         (async () => {
             try {
                 const response = await axios.get('http://localhost:8000/quiz')
-                setQuizes(response.data.data)
+                setCategories(response.data.data)
                 // console.log(quizes)
             } catch (error) {
                 console.log(error)
@@ -21,9 +21,9 @@ const Home = () => {
     return (
         <>
             <Navbar />
-            <div className="container d-flex direction-row">
+            <div className="main d-flex wrap-md align-center justify-start">
                 {
-                    quizes.map(quiz => <QuizCard quiz={quiz} key={quiz.id} />)
+                    categories.map(quiz => <QuizCard quiz={quiz} key={quiz.id} />)
                 }
             </div>
         </>

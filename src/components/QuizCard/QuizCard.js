@@ -1,6 +1,14 @@
 import './QuizCard.css'
 
 const QuizCard = ({ quiz }) => {
+
+    const handleOnClick = (quiz) => {
+        quiz.quiz.forEach(q => {
+            console.log(q.question)
+            q.options.forEach(op => console.log(op.option))
+        })
+    }
+
     const { title, description } = quiz
     return (
         <div className="container d-flex direction-column">
@@ -11,7 +19,7 @@ const QuizCard = ({ quiz }) => {
                 <h3 className="title">{title}</h3>
                 <span>{description}</span>
             </div>
-            <button className="button play-now-btn btn-primary cursor">Play Now</button>
+            <button className="button play-now-btn btn-primary cursor" onClick={() => handleOnClick(quiz)}>Play Now</button>
         </div>
 
     )
