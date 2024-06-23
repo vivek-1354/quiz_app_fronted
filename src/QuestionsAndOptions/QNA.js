@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import { useQuiz } from '../context'
 import './QNA.css'
 
@@ -5,6 +6,7 @@ import React from 'react'
 
 export const QNA = ({ quiz }) => {
 
+    const navigate = useNavigate()
     // const { question, options } = quiz
     const { index, score, quizCategory, quizDispatch } = useQuiz()
 
@@ -13,6 +15,11 @@ export const QNA = ({ quiz }) => {
             quizDispatch({
                 type: "INC_INDEX"
             })
+        } else {
+            quizDispatch({
+                type: "SUBMIT"
+            })
+            navigate('/result')
         }
     }
     const handlePreviousQ = () => {
@@ -52,8 +59,8 @@ export const QNA = ({ quiz }) => {
                 <div className="nxt-btn-container">
                     <div className="d-flex gap">
                         <button className="play-btn button btn-secondary cursor">Quit</button>
-                        <button className="nxt-qstn play-now-btn button btn-primary cursor" onClick={handlePreviousQ}>Previous Question</button>
-                        <button className="nxt-qstn play-now-btn button btn-primary cursor" onClick={handleNextQ}>Next Question</button>
+                        {index > 0 && <button className="nxt-qstn play-now-btn button btn-primary cursor" onClick={handlePreviousQ}>Previous Question</button>}
+                        <button className="nxt-qstn play-now-btn button btn-primary cursor" onClick={handleNextQ}>{(index + 1 === quiz.length) ? "Submit" : "Next Question"}</button>
                     </div>
                 </div>
             </section>
