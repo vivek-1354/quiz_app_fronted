@@ -1,22 +1,23 @@
 import './QuizCard.css'
 
 
-import { useAuth } from '../../context'
+import { useAuth, useQuiz } from '../../context'
 import { useNavigate } from 'react-router-dom'
 
 export const QuizCard = ({ quizCategory }) => {
     const navigate = useNavigate()
 
-    const { token, authDispatch } = useAuth()
+    const { token } = useAuth()
+    const { quizDispatch } = useQuiz()
     const { title, description, category } = quizCategory
 
     const handlePlayNow = () => {
+        quizDispatch({
+            type: "CATEGORY",
+            payload: category
+        })
         if (token) {
             navigate('/quiz')
-            authDispatch({
-                type: "CATEGORY",
-                payload: category
-            })
             // console.log(category)
         } else {
             navigate('/auth/login')

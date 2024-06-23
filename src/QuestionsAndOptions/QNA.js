@@ -1,20 +1,39 @@
+import { useQuiz } from '../context'
 import './QNA.css'
 
 import React from 'react'
 
-export const QNA = ({ category, question, options }) => {
+export const QNA = ({ quiz }) => {
+
+    // const { question, options } = quiz
+    const { index, score, quizCategory, quizDispatch } = useQuiz()
+
+    const handleNextQ = () => {
+        if (index < quiz.length - 1) {
+            quizDispatch({
+                type: "INC_INDEX"
+            })
+        }
+    }
+    const handlePreviousQ = () => {
+        if (index > 0) {
+            quizDispatch({
+                type: "DEC_INDEX"
+            })
+        }
+    }
     return (
-        <main className="d-flex justify-center qns-main">
+        <main className="d-grid d-flex justify-center qns-main">
             <section className="question-dialog container-flex">
                 <h2 className='d-flex justify-center qsn-title'>
-                    {category}
+                    {quizCategory}
                 </h2>
                 <div className="qsn_scr">
-                    <span>Question : 1/4</span>
-                    <span className="score">Score:10</span>
+                    <span>Question : {index + 1}/{quiz.length}</span>
+                    <span className="score">Score:{score}</span>
                 </div>
                 <div className="question">
-                    <span>Q1: {question}</span>
+                    <span>Q-{index + 1}: {quiz[index].question}</span>
                 </div>
                 {/* <div className="options-box">
                     <button className='button option d-flex justify-center'>B</button>
@@ -23,7 +42,7 @@ export const QNA = ({ category, question, options }) => {
                 </div> */}
                 {
                     <div className="options-box">
-                        {options.map(op => {
+                        {quiz[index].options.map(op => {
                             return (
                                 <button key={op.id} className='button option d-flex justify-center'>{op.option}</button>
                             )
@@ -33,7 +52,8 @@ export const QNA = ({ category, question, options }) => {
                 <div className="nxt-btn-container">
                     <div className="d-flex gap">
                         <button className="play-btn button btn-secondary cursor">Quit</button>
-                        <button className="nxt-qstn play-now-btn button btn-primary cursor">Next Question</button>
+                        <button className="nxt-qstn play-now-btn button btn-primary cursor" onClick={handlePreviousQ}>Previous Question</button>
+                        <button className="nxt-qstn play-now-btn button btn-primary cursor" onClick={handleNextQ}>Next Question</button>
                     </div>
                 </div>
             </section>

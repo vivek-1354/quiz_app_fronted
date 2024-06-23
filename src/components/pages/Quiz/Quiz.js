@@ -1,16 +1,16 @@
 import React, { Fragment, useState, useEffect } from 'react'
 import { Navbar, QNA } from '../../../components'
-import { useAuth } from '../../../context'
+import { useQuiz } from '../../../context'
 import axios from 'axios'
 export const Quiz = () => {
     const [quiz, setQuiz] = useState()
-    const { category } = useAuth()
+    const { quizCategory } = useQuiz()
 
     useEffect(() => {
         (async () => {
             try {
                 const response = await axios.get('http://localhost:8000/quiz')
-                const filterData = response.data.data.filter(cat => cat.category === category)
+                const filterData = response.data.data.filter(cat => cat.category === quizCategory)
                 setQuiz(filterData[0].quiz)
                 // console.log(response.data.data)
                 // console.log(quizes)
@@ -20,15 +20,15 @@ export const Quiz = () => {
             }
         })()
     }, [])
-    console.log(category)
     return (
         <>
             <Navbar />
             <div className="main d-flex wrap-md align-center justify-start">
                 {
-                    quiz && quiz.map(qz => <QNA key={qz.id} category={category} title={qz.title} question={qz.question} options={qz.options} />)
+                    quiz && <QNA quiz={quiz} />
                 }
             </div>
         </>
     )
 }
+{/* quiz && quiz.map(qz => <QNA key={qz.id} quiz={qz} length={quiz.length} />) */ }

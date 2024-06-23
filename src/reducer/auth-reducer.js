@@ -5,9 +5,6 @@ export const authReducer = (state, action) => {
         case "LOGIN":
             newState = { ...state, ...action.payload }
             return newState
-        case "CATEGORY":
-            newState = { ...state, category: action.payload }
-            return newState
         default:
             return state;
     }

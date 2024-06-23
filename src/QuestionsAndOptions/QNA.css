@@ -1,3 +1,8 @@
+.d-grid {
+  margin: 7rem 0 1rem 0;
+  display: grid;
+  place-content: center center;
+}
 .qns-main {
     margin: 3rem 0 1rem 0;
   }

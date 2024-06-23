@@ -9,7 +9,6 @@ export const loginHandler = async (username, password) => {
             password: password
         })
         if (status === 200) {
-            console.log(status)
             localStorage.setItem("token", token)
             return token
         }

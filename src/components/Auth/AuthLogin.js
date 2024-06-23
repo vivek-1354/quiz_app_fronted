@@ -19,6 +19,16 @@ export const AuthLogin = () => {
         e.preventDefault()
         const token = loginHandler(user.current.value, pass.current.value)
         if (token) {
+            authDispatch(
+                {
+                    type: "LOGIN",
+                    payload: {
+                        username: user.current.value,
+                        password: pass.current.value,
+                        token: token
+                    }
+                }
+            )
             navigate('/')
         }
         // authDispatch(
@@ -30,16 +40,6 @@ export const AuthLogin = () => {
         //         }
         //     }
         // )
-        authDispatch(
-            {
-                type: "LOGIN",
-                payload: {
-                    username: user.current.value,
-                    password: pass.current.value,
-                    token: token
-                }
-            }
-        )
     }
     return (
         <div className="d-grid d-flex justify-center">
