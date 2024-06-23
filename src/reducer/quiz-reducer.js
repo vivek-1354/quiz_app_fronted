@@ -10,6 +10,9 @@ export const quizReducer = (state, action) => {
         case "DEC_INDEX":
             newState = { ...state, index: state.index - 1 }
             return newState
+        case "CORRECT_ANS":
+            newState = { ...state, score: state.score + 10 }
+            return newState
         case "SUBMIT":
             break
         default:

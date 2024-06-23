@@ -2,23 +2,29 @@ import { useNavigate } from 'react-router-dom'
 import { useQuiz } from '../context'
 import './QNA.css'
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 export const QNA = ({ quiz }) => {
 
+    const [isClicked, setIsClicked] = useState(false)
+
+    // useEffect(() => {
+    //     setIsClicked(false)
+    // }, [])
     const navigate = useNavigate()
     // const { question, options } = quiz
     const { index, score, quizCategory, quizDispatch } = useQuiz()
 
     const handleNextQ = () => {
+        setIsClicked(false)
         if (index < quiz.length - 1) {
             quizDispatch({
                 type: "INC_INDEX"
             })
         } else {
-            quizDispatch({
-                type: "SUBMIT"
-            })
+            // quizDispatch({
+            //     type: "SUBMIT"
+            // })
             navigate('/result')
         }
     }
@@ -28,6 +34,16 @@ export const QNA = ({ quiz }) => {
                 type: "DEC_INDEX"
             })
         }
+    }
+
+    const handleAnswerClick = (id, isCorrect) => {
+        setIsClicked(true)
+        if (isCorrect) {
+            quizDispatch({
+                type: "CORRECT_ANS"
+            })
+        }
+
     }
     return (
         <main className="d-grid d-flex justify-center qns-main">
@@ -51,7 +67,12 @@ export const QNA = ({ quiz }) => {
                     <div className="options-box">
                         {quiz[index].options.map(op => {
                             return (
-                                <button key={op.id} className='button option d-flex justify-center'>{op.option}</button>
+                                <button
+                                    key={op.id}
+                                    className={`button option d-flex justify-center ${isClicked && op.isCorrect ? "success" : ""} ${isClicked && !op.isCorrect ? "error" : ""}`}
+                                    onClick={() => handleAnswerClick(op.id, op.isCorrect)}>
+                                    {op.option}
+                                </button>
                             )
                         })}
                     </div>
