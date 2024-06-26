@@ -33,6 +33,9 @@ export const Navbar = () => {
                     <li className="list-item-inline">
                         <Link to="/auth/login" className="link cursor" onClick={handleOnClick}>{token ? "Logout" : "Login"}</Link>
                     </li>
+                    <li>
+                        <Link to="/aboutus" className="link cursor">AboutUs</Link>
+                    </li>
                 </ul>
             </nav>
         </header>
